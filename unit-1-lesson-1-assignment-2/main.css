@@ -1,0 +1,32 @@
+body {
+  background-color: #344A5F;
+  min-height: 600px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+section {
+  margin: 40px 0;
+  background-color: #F0F1F2;
+  min-height: 400px;
+}
+
+form,
+#result {
+  max-width: 200px;
+  margin: 30px auto;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.user-input {
+  display: block;
+}
+
+input[type=submit] {
+  background-color: #4AB471;
+  border: none;
+}
+
+.result {
+  background-color: #4AB471;
+}
