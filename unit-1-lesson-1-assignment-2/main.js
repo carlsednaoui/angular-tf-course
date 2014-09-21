@@ -6,9 +6,6 @@ function calculate(e) {
 
   // int check
   if (isNaN(numberOne) || isNaN(numberTwo)) {
-    alert('X and Y need to be numbers');
-    e.preventDefault();
-    e.stopPropagation();
     return;
   }
 
