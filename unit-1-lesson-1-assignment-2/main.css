@@ -25,6 +25,7 @@ form,
 input[type=submit] {
   background-color: #4AB471;
   border: none;
+  cursor: pointer;
 }
 
 .result {
