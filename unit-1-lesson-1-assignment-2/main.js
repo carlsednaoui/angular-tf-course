@@ -37,6 +37,10 @@ function calculate(e) {
 
 }
 
-// attach listeners
-document.getElementById('add-numbers').addEventListener('click', calculate, false);
-document.getElementById('subtract-numbers').addEventListener('click', calculate, false);
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  // attach listeners
+  document.getElementById('add-numbers').addEventListener('click', calculate, false);
+  document.getElementById('subtract-numbers').addEventListener('click', calculate, false);
+
+});

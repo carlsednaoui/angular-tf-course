@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+
   <title>Sample app for unit 1, lesson 1, assignement 2</title>  
   <link rel="stylesheet" href="main.css">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300" rel="stylesheet" >
 </head>
 <body>
   
   <section>
     <form id="calculator">
-      <div class="user-input">
+      <fieldset>
         <label for="number-one">X =</label>
         <input type="number" id="number-one" required>
-      </div>
+      </fieldset>
       
-      <div class="user-input">
+      <fieldset>
         <label for="number-two">Y = </label>
         <input type="number" id="number-two" required>
-      </div>
+      </fieldset>
 
-      <input type="submit" id="add-numbers" value="add" data-operation="add">
-      <input type="submit" id="subtract-numbers" value="subtract" data-operation="subtract">
+      <p><input type="submit" id="add-numbers" value="add" data-operation="add"></p>
+      <p><input type="submit" id="subtract-numbers" value="subtract" data-operation="subtract"></p>
     </form>
 
     <div id="result"></div>
   </section>
 
-  <script type="text/javascript" src="main.js"></script>
+  <script src="main.js"></script>
+  
 </body>
 </html>
