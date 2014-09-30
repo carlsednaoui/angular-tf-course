@@ -11,20 +11,24 @@
 </head>
 <body ng-app="myApp">
 
-<input type="text" ng-model="maleName" placeholder="male name">
-<input type="text" ng-model="jobTitle" placeholder="job title">
-<input type="text" ng-model="tediousTask" placeholder="tedious task">
-<input type="text" ng-model="dirtyTask" placeholder="dirty task">
-<input type="text" ng-model="celebrity" placeholder="celebrity">
-<input type="text" ng-model="uselessSkill" placeholder="useless skill">
-<input type="text" ng-model="obnoxiousCelebrity" placeholder="obnoxious celebrity">
-<input type="text" ng-model="hugeNumber" placeholder="huge number">
-<input type="text" ng-model="adjective" placeholder="adjective">
-  
-<div ng-controller="madLib">
-  <p>{{ maleName }} was a {{ jobTitle }} who loved technology. Although he loved parts of his job, he absolutely hated {{ tediousTask }} and {{ dirtyTask }}. So, {{ maleName }} met with his life mentor {{ celebrity }} who told him to learn how to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }} so he studied programming instead.</p>
+<form>
+  <input type="text" ng-model="maleName" placeholder="male name">
+  <input type="text" ng-model="jobTitle" placeholder="job title">
+  <input type="text" ng-model="tediousTask" placeholder="tedious task">
+  <input type="text" ng-model="dirtyTask" placeholder="dirty task">
+  <input type="text" ng-model="celebrity" placeholder="celebrity">
+  <input type="text" ng-model="uselessSkill" placeholder="useless skill">
+  <input type="text" ng-model="obnoxiousCelebrity" placeholder="obnoxious celebrity">
+  <input type="text" ng-model="hugeNumber" placeholder="huge number">
+  <input type="text" ng-model="adjective" placeholder="adjective">
+  Male <input type="radio" ng-model="gender" value="male">
+  Female <input type="radio" ng-model="gender" value="female">
+</form>
 
-  <p>What a great decision! With his new skill, {{ maleName }} built a(n) {{ adjective }} robot named {{ obnoxiousCelebrity }} that not only loved {{ dirtyTask }} but did it {{ hugeNumber }} faster.</p>
+<div ng-controller="madLib">
+  <p>{{ maleName }} was a {{ jobTitle }} who loved technology. Although {{ gender == 'male' ? 'he' : 'she' }} loved parts of {{ gender == 'male' ? 'his' : 'her' }} job, {{ gender == 'male' ? 'he' : 'she' }} absolutely hated {{ tediousTask }} and {{ dirtyTask }}. So, {{ maleName }} met with {{ gender == 'male' ? 'his' : 'her' }} life mentor {{ celebrity }} who told him to learn how to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }} so {{ gender == 'male' ? 'he' : 'she' }} studied programming instead.</p>
+
+  <p>What a great decision! With {{ gender == 'male' ? 'his' : 'her' }} new skill, {{ maleName }} built a(n) {{ adjective }} robot named {{ obnoxiousCelebrity }} that not only loved {{ dirtyTask }} but did it {{ hugeNumber }} faster.</p>
 </div>
 
   <script src="main.js"></script>
