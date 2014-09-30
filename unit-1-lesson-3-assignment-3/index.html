@@ -11,27 +11,19 @@
 </head>
 <body ng-app="myApp">
 
-<form>
-  <input type="text" ng-model="maleName" placeholder="male name">
-  <input type="text" ng-model="jobTitle" placeholder="job title">
-  <input type="text" ng-model="tediousTask" placeholder="tedious task">
-  <input type="text" ng-model="dirtyTask" placeholder="dirty task">
-  <input type="text" ng-model="celebrity" placeholder="celebrity">
-  <input type="text" ng-model="uselessSkill" placeholder="useless skill">
-  <input type="text" ng-model="obnoxiousCelebrity" placeholder="obnoxious celebrity">
-  <input type="text" ng-model="hugeNumber" placeholder="huge number">
-  <input type="text" ng-model="adjective" placeholder="adjective">
-  Male <input type="radio" ng-model="gender" value="male">
-  Female <input type="radio" ng-model="gender" value="female">
-</form>
+  <div ng-controller="madLib">
+    <form>
+      <input ng-repeat="f in models" ng-model="inputs[f.model]" name="{{f.model}}" type="{{f.type}}" placeholder="{{f.placeholder}}">
+      Male <input type="radio" ng-model="gender" value="male">
+      Female <input type="radio" ng-model="gender" value="female">
+    </form>
 
-<div ng-controller="madLib">
-  <p>{{ maleName }} was a {{ jobTitle }} who loved technology. Although {{ gender == 'male' ? 'he' : 'she' }} loved parts of {{ gender == 'male' ? 'his' : 'her' }} job, {{ gender == 'male' ? 'he' : 'she' }} absolutely hated {{ tediousTask }} and {{ dirtyTask }}. So, {{ maleName }} met with {{ gender == 'male' ? 'his' : 'her' }} life mentor {{ celebrity }} who told him to learn how to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }} so {{ gender == 'male' ? 'he' : 'she' }} studied programming instead.</p>
+    <p>{{ inputs.maleName }} was a {{ inputs.jobTitle }} who loved technology. Although {{ getGender('heShe') }} loved parts of {{ getGender('hisHer') }} job, {{ getGender('heShe') }} absolutely hated {{ inputs.tediousTask }} and {{ inputs.dirtyTask }}. So, {{ inputs.maleName }} met with {{ getGender('hisHer') }} life mentor {{ inputs.celebrity }} who told him to learn how to {{ inputs.uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ inputs.uselessSkill }} so {{ getGender('heShe') }} studied programming instead.</p>
 
-  <p>What a great decision! With {{ gender == 'male' ? 'his' : 'her' }} new skill, {{ maleName }} built a(n) {{ adjective }} robot named {{ obnoxiousCelebrity }} that not only loved {{ dirtyTask }} but did it {{ hugeNumber }} faster.</p>
-</div>
+    <p>What a great decision! With {{ getGender('hisHer') }} new skill, {{ inputs.maleName }} built a(n) {{ inputs.adjective }} robot named {{ inputs.obnoxiousCelebrity }} that not only loved {{ inputs.dirtyTask }} but did it {{ inputs.hugeNumber }} faster.</p>
+  </div>
 
-  <script src="main.js"></script>
+<script src="main.js"></script>
   
 </body>
 </html>
