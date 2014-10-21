@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+  
+  <head>
+    <meta charset="UTF-8">
+    <script src="./../lib/jquery.min.js"></script>
+    <script src="./../lib/angular.min.js"></script>
+    <title>Calculator app</title>
+  </head>
+
+  <body>
+    <div ng-controller="MultiplicationCtrl" initial-number-limit="22">
+      <input type="number" ng-model="numberLimit" placeholder="Enter a number" />
+      <table>
+          <tr ng-repeat="a in numbers">
+              <td ng-repeat="b in numbers">
+                  {{ compute(a, b) }}
+              </td>
+          </tr>
+      </table>
+    </div>
+    <script src="main.js"></script>
+  </body>
+
+</html>
