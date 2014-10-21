@@ -10,11 +10,17 @@
   </head>
 
   <body>
-    <div ng-controller="MultiplicationCtrl" initial-number-limit="22">
+    <div ng-controller="DisplayCtrl">
+      <div ng-if="content">{{ content }}</div>
+      <div ng-if="!content">...</div>
+    </div>
+
+    <div ng-controller="MultiplicationCtrl" initial-number-limit="4">
       <input type="number" ng-model="numberLimit" placeholder="Enter a number" />
       <table>
           <tr ng-repeat="a in numbers">
               <td ng-repeat="b in numbers"
+                  ng-click="setActiveNumber(compute(a, b))"
                   ng-mouseleave="clearActiveFactors()"
                   ng-mouseover="setActiveFactors(a, b)"
                   ng-class="{hover: matchesFactor(a, b)}">
@@ -22,6 +28,15 @@
               </td>
           </tr>
       </table>
+    </div>
+
+    <div ng-controller="DisplayCtrl">
+      <div ng-if="content">
+        The value you have selected to display is: {{ content }}
+      </div>
+      <div ng-if="!content">
+        You have not selected a value to display
+      </div>
     </div>
     <script src="main.js"></script>
   </body>
