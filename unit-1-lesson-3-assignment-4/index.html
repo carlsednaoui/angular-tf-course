@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <script src="./../lib/jquery.min.js"></script>
     <script src="./../lib/angular.min.js"></script>
+    <link rel="stylesheet" href="main.css">
     <title>Calculator app</title>
   </head>
 
@@ -13,7 +14,10 @@
       <input type="number" ng-model="numberLimit" placeholder="Enter a number" />
       <table>
           <tr ng-repeat="a in numbers">
-              <td ng-repeat="b in numbers">
+              <td ng-repeat="b in numbers"
+                  ng-mouseleave="clearActiveFactors()"
+                  ng-mouseover="setActiveFactors(a, b)"
+                  ng-class="{hover: matchesFactor(a, b)}">
                   {{ compute(a, b) }}
               </td>
           </tr>
