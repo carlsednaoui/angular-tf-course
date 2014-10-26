@@ -11,25 +11,35 @@
 </head>
 <body ng-app="myApp" ng-controller="madLib">
 
-<form ng-submit="submit()">
-  <input type="text" ng-model="maleName" placeholder="male name">
-  <input type="text" ng-model="jobTitle" placeholder="job title">
-  <input type="text" ng-model="tediousTask" placeholder="tedious task">
-  <input type="text" ng-model="dirtyTask" placeholder="dirty task">
-  <input type="text" ng-model="celebrity" placeholder="celebrity">
-  <input type="text" ng-model="uselessSkill" placeholder="useless skill">
-  <input type="text" ng-model="obnoxiousCelebrity" placeholder="obnoxious celebrity">
-  <input type="text" ng-model="hugeNumber" placeholder="huge number">
-  <input type="text" ng-model="adjective" placeholder="adjective">
-  Male <input type="radio" ng-model="gender" value="male">
-  Female <input type="radio" ng-model="gender" value="female">
+<form ng-submit="submitted = true; submit()" ng-hide="state == 'display'" name="generateMadLib">
+  
+  <!-- Ask Thomas: How do I conditionally show this -->
+  <!-- I basically want to give every field with an error an outline and then show this thing to tell them to check things with a red border -->
+  <div class="errors" ng-if="submitted && generateMadLib.$error">There was some errors, please fix them.</div>
+
+  <input type="text" ng-model="data.maleName" placeholder="male name" required>
+  <input type="text" ng-model="data.jobTitle" placeholder="job title">
+  <input type="text" ng-model="data.tediousTask" placeholder="tedious task">
+  <input type="text" ng-model="data.dirtyTask" placeholder="dirty task">
+  <input type="text" ng-model="data.celebrity" placeholder="celebrity">
+  <input type="text" ng-model="data.uselessSkill" placeholder="useless skill">
+  <input type="text" ng-model="data.obnoxiousCelebrity" placeholder="obnoxious celebrity">
+
+  <!-- Ask Thomas how to do this  -->
+  <!-- <input type="text" ng-repeat="i in textInputs" ng-model="i.model" placeholder="{{ i.placeholder }}"> -->
+
+  <input type="text" ng-model="data.hugeNumber" placeholder="huge number" ng-minlength="5" required>
+  <input type="text" ng-model="data.adjective" placeholder="adjective">
+  Male <input type="radio" ng-model="data.gender" value="male">
+  Female <input type="radio" ng-model="data.gender" value="female">
   <input type="submit">
 </form>
 
-<div>
-  <p>{{ maleName }} was a {{ jobTitle }} who loved technology. Although {{ gender == 'male' ? 'he' : 'she' }} loved parts of {{ gender == 'male' ? 'his' : 'her' }} job, {{ gender == 'male' ? 'he' : 'she' }} absolutely hated {{ tediousTask }} and {{ dirtyTask }}. So, {{ maleName }} met with {{ gender == 'male' ? 'his' : 'her' }} life mentor {{ celebrity }} who told him to learn how to {{ uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ uselessSkill }} so {{ gender == 'male' ? 'he' : 'she' }} studied programming instead.</p>
+<div ng-show="state == 'display'">
+  <p>{{ data.maleName }} was a {{ data.jobTitle }} who loved technology. Although {{ verifyGender(data.gender, 'he') }} loved parts of {{ verifyGender(data.gender, 'his') }} job, {{ verifyGender(data.gender, 'he') }} absolutely hated {{ data.tediousTask }} and {{ data.dirtyTask }}. So, {{ data.maleName }} met with {{ verifyGender(data.gender, 'his') }} life mentor {{ data.celebrity }} who told {{ verifyGender(data.gender, 'him') }} to learn how to {{ data.uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ data.uselessSkill }} so {{ verifyGender(data.gender, 'he') }} studied programming instead.</p>
 
-  <p>What a great decision! With {{ gender == 'male' ? 'his' : 'her' }} new skill, {{ maleName }} built a(n) {{ adjective }} robot named {{ obnoxiousCelebrity }} that not only loved {{ dirtyTask }} but did it {{ hugeNumber }} faster.</p>
+  <p>What a great decision! With {{ verifyGender(data.gender, 'his') }} new skill, {{ data.maleName }} built a(n) {{ data.adjective }} robot named {{ data.obnoxiousCelebrity }} that not only loved {{ data.dirtyTask }} but did it {{ data.hugeNumber }} faster.</p>
+  <button ng-click="reset()">Start over</button>
 </div>
 
   <script src="main.js"></script>
