@@ -44,11 +44,12 @@ angular.module('myApp', [])
     }
 
     $scope.submit = function() {
-      debugger;
       if ($scope.generateMadLib.$valid) {
-        $scope.state = 'display';  
+        $scope.state = 'display';
+        $scope.submitted = false;
       } else {
-
+        console.log('errors');
+        debugger;
       }
     }
 
