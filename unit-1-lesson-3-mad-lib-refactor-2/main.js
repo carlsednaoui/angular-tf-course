@@ -2,45 +2,48 @@ angular.module('myApp', [])
   .controller('madLib', function($scope) {
     $scope.data = {};
 
-    // $scope.textInputs = [
-    //   {
-    //     model: 'maleName',
-    //     placeholder: 'male name'
-    //   },
-    //   {
-    //     model: 'jobTitle',
-    //     placeholder: 'job title'
-    //   },
-    //   {
-    //     model: 'tediousTask',
-    //     placeholder: 'tedious task'
-    //   },
-    //   {
-    //     model: 'dirtyTask',
-    //     placeholder: 'dirty task'
-    //   },
-    //   {
-    //     model: 'celebrity',
-    //     placeholder: 'celebrity name'
-    //   },
-    //   {
-    //     model: 'uselessSkill',
-    //     placeholder: 'useless skill'
-    //   },
-    //   {
-    //     model: 'obnoxiousCelebrity',
-    //     placeholder: 'obnoxious celebrity'
-    //   },
-    // ];
+    $scope.textInputs = [
+      {
+        model: 'maleName',
+        placeholder: 'male name'
+      },
+      {
+        model: 'jobTitle',
+        placeholder: 'job title'
+      },
+      {
+        model: 'tediousTask',
+        placeholder: 'tedious task'
+      },
+      {
+        model: 'dirtyTask',
+        placeholder: 'dirty task'
+      },
+      {
+        model: 'celebrity',
+        placeholder: 'celebrity name'
+      },
+      {
+        model: 'uselessSkill',
+        placeholder: 'useless skill'
+      },
+      {
+        model: 'obnoxiousCelebrity',
+        placeholder: 'obnoxious celebrity'
+      },
+    ];
 
+    // {{ verifyGender(data.gender, 'him') }}
     $scope.verifyGender = function(gender, word) {
-      // bumper
-      if ( gender === 'male' ) return;
-
-      // swap word
-      if ( word === 'he'  ) return 'she';
-      if ( word === 'his' ) return 'her';
-      if ( word === 'him' ) return 'her';
+      if ( gender === 'male' ) {
+        if ( word === 'heshe'  ) return 'he';
+        if ( word === 'hisher' ) return 'his';
+        if ( word === 'himher' ) return 'him';
+      } else {
+        if ( word === 'heshe'  ) return 'she';
+        if ( word === 'hisher' ) return 'her';
+        if ( word === 'himher' ) return 'her';        
+      }
     }
 
     $scope.submit = function() {
