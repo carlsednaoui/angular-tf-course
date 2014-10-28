@@ -1,19 +1,39 @@
 angular.module('tipCalculator', [])
   .run(function($rootScope) {
     $rootScope.reset = function() {
-      $rootScope.data = {};
       console.log('reseting');
-      // ask Thomas how to reset globally
+      $rootScope.data = {};
     }
   })
   .controller('mealDetails', function($scope, $rootScope) {
+    var mealDetails = {
+      subtotal: 0,
+      tip: 0,
+      calculateSubtotal: calculateSubtotal,
+      calculateTip: calculateTip,
+      allMeals: [],
+    };
+
     $scope.chargeCustomer = function() {
-      $rootScope.$broadcast('customerCharged', this.data);
-      $scope.data = {};
+      
+      mealDetails.calculateSubtotal($scope.data.price, $scope.data.tax);
+      mealDetails.calculateTip($scope.data.price, $scope.data.tip);
+      debugger;
+
+      $rootScope.$broadcast('customerCharged', mealDetails);
+      $scope.cancel();
     }
 
     $scope.cancel = function() {
       $scope.data = {};
+    }
+
+    function calculateSubtotal(amount, tax) {
+      mealDetails.subtotal = amount + (amount * (tax/100));
+    }
+
+    function calculateTip(amount, tip) {
+      mealDetails.tip = amount * (tip/100);
     }
 
   })
@@ -22,16 +42,7 @@ angular.module('tipCalculator', [])
       $scope.data = data;
     });
 
-    $scope.calculateSubtotal = function(amount, tax) {
-      if (amount === undefined || tax === undefined) return;
-      return amount + (amount * (tax/100));
-    }
-
-    $scope.calculateTip = function(amount, tip) {
-      if (amount === undefined || tip === undefined) return;
-      return amount * (tip/100);
-    }
-
+    $scope.subtotal;
   })
   .controller('earnings', function($scope) {
     $scope.checks = [];
