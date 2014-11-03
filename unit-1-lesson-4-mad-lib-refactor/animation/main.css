@@ -1,0 +1,41 @@
+input {
+  display: block;
+}
+
+/*
+  on click, the shown element slides down and fades out
+  once fully faded, the new element appears from the bottom up
+*/
+
+/* animations */
+.show-hide-animation.ng-hide-add {
+  -webkit-animation:2s smooth-transition;
+  animation:2s smooth-transition;
+}
+
+.show-hide-animation.ng-hide-remove {
+  -webkit-animation:2s smooth-transition;
+  animation:2s smooth-transition;
+}
+
+@keyframes smooth-transition {
+  from {
+    margin-top: 0;
+    opacity: 1;
+  }
+  to {
+    margin-top: 500px;
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes smooth-transition {
+  from {
+    margin-top: 0;
+    opacity: 1;
+  }
+  to {
+    margin-top: 500px;
+    opacity: 0;
+  }
+}
