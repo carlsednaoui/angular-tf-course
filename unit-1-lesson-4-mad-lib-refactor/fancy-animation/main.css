@@ -1,0 +1,19 @@
+input {
+  display: block;
+}
+
+.ng-submitted input.ng-invalid {
+  border: 1px solid red;
+}
+
+.show-hide-animation {
+  -webkite-transition: 0.5s lineal all;
+  transition: 0.5s linear all;
+
+  display: block !important;
+  opacity: 1;
+}
+
+.show-hide-animation.ng-hide {
+  opacity: 0;
+}
