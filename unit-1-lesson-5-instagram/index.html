@@ -18,6 +18,17 @@
     <input type="submit" value="Let's go!">
   </form>
 
+  <div ng-if="resultMessage">
+    <p>{{ resultMessage }}</p>
+    <ul class="image-grid">
+      <li ng-repeat="img in images">
+        <a href="{{img.link}}" title="{{ img.caption.text }}">
+          <img ng-src="{{img.images.standard_resolution.url}}">
+        </a>
+      </li>
+    </ul>
+  </div>
+
   <script src="main.js"></script>
 
 </body>

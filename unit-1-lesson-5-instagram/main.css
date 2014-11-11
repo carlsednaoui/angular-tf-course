@@ -1,0 +1,15 @@
+ul.image-grid li {
+  display: inline-block;
+}
+
+ul.image-grid li img {
+  max-width: 300px;
+}
+
+ul.image-grid li:hover a:after {
+  content: attr(title);
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
