@@ -1,0 +1,23 @@
+input {
+  display: block;
+}
+
+.ng-submitted input.ng-invalid {
+  border: 1px solid red;
+}
+
+/* animations */
+.show-hide-animation.ng-hide-remove {
+  -webkit-animation:2s smooth-transition;
+  animation:2s smooth-transition;
+}
+
+@keyframes smooth-transition {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@-webkit-keyframes smooth-transition {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

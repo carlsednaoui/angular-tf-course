@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mad lib refactor 2</title>
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/ng-animate.min.js"></script>
+  
+  <link rel="stylesheet" href="main.css">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300" rel="stylesheet" >
+</head>
+<body ng-app="myApp" ng-controller="madLib" ng-init="state = 'create'">
+
+<form name="generateMadLib"
+      ng-submit="submitted = true; submit()"
+      ng-class="{'ng-submitted': submitted}"
+      ng-show="state == 'create'"
+      class="show-hide-animation">
+  
+  <div class="errors" ng-if="submitted && generateMadLib.$error">There was some errors in red, please fix them.</div>
+
+  <input type="text" ng-repeat="i in textInputs" ng-model="data[i.model]" placeholder="{{ i.placeholder }}">
+
+  <input type="text" ng-model="data.hugeNumber" placeholder="huge number">
+  <input type="text" ng-model="data.adjective" placeholder="adjective">
+  Male <input type="radio" ng-model="data.gender" value="male">
+  Female <input type="radio" ng-model="data.gender" value="female">
+  <input type="submit">
+</form>
+</div>
+
+<div ng-show="state == 'display'"
+     class="show-hide-animation">
+  <p>{{ data.maleName }} was a {{ data.jobTitle }} who loved technology. Although {{ verifyGender(data.gender, 'heshe') }} loved parts of {{ verifyGender(data.gender, 'hisher') }} job, {{ verifyGender(data.gender, 'heshe') }} absolutely hated {{ data.tediousTask }} and {{ data.dirtyTask }}. So, {{ data.maleName }} met with {{ verifyGender(data.gender, 'hisher') }} life mentor {{ data.celebrity }} who told {{ verifyGender(data.gender, 'himher') }} to learn how to {{ data.uselessSkill }} with Thinkful. Thinkful didn't offer a course on {{ data.uselessSkill }} so {{ verifyGender(data.gender, 'heshe') }} studied programming instead.</p>
+
+  <p>What a great decision! With {{ verifyGender(data.gender, 'hisher') }} new skill, {{ data.maleName }} built a(n) {{ data.adjective }} robot named {{ data.obnoxiousCelebrity }} that not only loved {{ data.dirtyTask }} but did it {{ data.hugeNumber }} faster.</p>
+  <button ng-click="reset()">Start over</button>
+</div>
+
+<script src="main.js"></script>
+  
+</body>
+</html>

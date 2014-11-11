@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram search</title>
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/ng-animate.min.js"></script>
+  
+  <link rel="stylesheet" href="main.css">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300" rel="stylesheet" >
+</head>
+<body ng-app="myApp" ng-controller="instaSearch">
+  
+  <form ng-submit="searchInstagram()">
+    <input type="text" ng-model="search">
+    <input type="submit" value="Let's go!">
+  </form>
+
+  <div ng-if="resultMessage">
+    <p>{{ resultMessage }}</p>
+    <ul class="image-grid">
+      <li ng-repeat="img in images">
+        <a href="{{img.link}}" title="{{ img.caption.text }}">
+          <img ng-src="{{img.images.standard_resolution.url}}">
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
