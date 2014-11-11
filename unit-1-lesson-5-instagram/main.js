@@ -1,5 +1,5 @@
 angular.module('myApp', ['ngAnimate'])
-  .controller('instaSearch', function($scope, $http) {
+  .controller('instaSearch', function($scope, $http, $location) {
     $scope.searchInstagram = function() {
       var url = 'https://api.instagram.com/v1/tags/'
               + $scope.search
@@ -9,7 +9,7 @@ angular.module('myApp', ['ngAnimate'])
         client_id: 'd5b1dcbfb2bf4f3096d1a346ae2ae2ea',
         callback: 'JSON_CALLBACK'
       };
-      
+
       $http({
         url: url,
         method: 'JSONP',
@@ -21,7 +21,8 @@ angular.module('myApp', ['ngAnimate'])
             return;
           }
           
-          var prevSearch = $scope.search;
+          $location.path($scope.search);
+          var prevSearch = $location.path().slice(1);
           var len = res.data.length;
 
           $scope.search = '';
@@ -36,5 +37,11 @@ angular.module('myApp', ['ngAnimate'])
         .error(function() {
           $scope.resultMessage = 'There was an error, please try again.';
         })
+    }
+
+    if ($location.path()) {
+      // remove the starting '/'
+      $scope.search = $location.path().slice(1);
+      $scope.searchInstagram();
     }
   });
