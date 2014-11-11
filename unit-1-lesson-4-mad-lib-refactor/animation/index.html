@@ -13,10 +13,6 @@
 </head>
 <body ng-app="myApp" ng-controller="madLib" ng-init="state = 'create'">
 
-<!-- ng-if seems to collide with $scope.generateMadLib.$valid -->
-<!-- $scope.generateMadLib appears to be undefined -->
-<!-- I think ng-if creates a child scope, how do you use a form inside an ng-if? -->
-
 <form name="generateMadLib"
       ng-submit="submitted = true; submit()"
       ng-class="{'ng-submitted': submitted}"

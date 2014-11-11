@@ -46,14 +46,18 @@ angular.module('myApp', ['ngAnimate'])
       }
     }
 
+    console.log($scope);
     $scope.submit = function() {
-      if ($scope.generateMadLib.$valid) {
-        $scope.state = 'display';
-        $scope.submitted = false;
-      } else {
-        console.log('errors');
-        debugger;
-      }
+      console.log($scope.generateMadLib);
+      console.log($scope);
+
+      // if ($scope.generateMadLib.$valid) {
+      //   $scope.state = 'display';
+      //   $scope.submitted = false;
+      // } else {
+      //   console.log('errors');
+      //   debugger;
+      // }
     }
 
     $scope.reset = function() {
