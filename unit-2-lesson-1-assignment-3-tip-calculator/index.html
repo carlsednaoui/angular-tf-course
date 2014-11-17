@@ -6,59 +6,16 @@
   <link rel="stylesheet" href="main.css">
   <script src="./../lib/jquery.min.js"></script>
   <script src="./../lib/angular.min.js"></script>
+  <script src="./../lib/angular-route.min.js"></script>
 </head>
 <body>
 
-<div class="calculator">
-  <section class="left">
-    <div ng-controller="mealDetails">
-      <form name="customer-bill"
-            ng-submit="chargeCustomer()">
-        <h2>Enter the meal details</h2>
-        
-        <div>
-          <label>Base meal price: $</label>
-          <input type="number" ng-model="data.price">  
-        </div>
+  <a href="#/">Home</a>
+  <a href="#/meal">Meal</a>
+  <a href="#/earnings">Earnings</a>
 
-        <div>
-          <label>Tax rate: %</label>
-          <input type="number" ng-model="data.tax">  
-        </div>
-
-        <div>
-          <label>Tip percentage: %</label>
-          <input type="number" ng-model="data.tip">  
-        </div>
-
-        <input type="submit" value="submit">
-      </form>
-      <button ng-click="cancel()">cancel</button>
-    </div>
-  </section>
-
-  <section class="right">
-    <div ng-controller="charges">
-      <h2>Customer charges</h2>
-      
-        <p>Subtotal: {{ calculateSubtotal(data.price, data.tax) }}</p>
-        <p>Tip: {{ calculateTip(data.price, data.tip) }}</p>
-        <p>Total: {{ calculateSubtotal(data.price, data.tax) + 
-                     calculateTip(data.price, data.tip)}}
-        </p>
-    </div>
-
-    <div ng-controller="earnings">
-      <h2>My earnings info</h2>
-      
-      <p>Tip total: {{ getTipTotal() }}</p>
-      <p>Meal count: {{ checks.length }}</p>
-      <p>Average tip per meal: {{ getTipTotal() / checks.length }}</p>
-    </div>
-  </section>
-  <div class="reset">
-    <button ng-click="reset()">reset</button>
-  </div>
+  <div ng-view></div>
+    
 </div>
 
 <script src="main.js"></script>

@@ -1,14 +1,24 @@
-angular.module('tipCalculator', [])
-  .run(function($rootScope) {
-    $rootScope.reset = function() {
-      $rootScope.data = {};
-      console.log('reseting');
-      // ask Thomas how to reset globally
-    }
+angular.module('tipCalculator', ['ngRoute'])
+  .config(function($routeProvider) {
+      $routeProvider.when('/', {
+          templateUrl : './home.html'
+      }).when('/meal', {
+          templateUrl : './meal.html',
+          controller : 'mealDetailsCtrl'
+      }).when('/earnings', {
+          templateUrl : './earnings.html',
+          controller : 'earningsCtrl'
+      }).otherwise({
+        redirectTo : '/'
+      })
   })
-  .controller('mealDetails', function($scope, $rootScope) {
+  .run(function($rootScope) {
+    $rootScope.checks = [];
+  })
+  .controller('mealDetailsCtrl', function($scope, $rootScope) {
     $scope.chargeCustomer = function() {
-      $rootScope.$broadcast('customerCharged', this.data);
+      updateCustomerCharges();
+      $rootScope.checks.push(this.data);
       $scope.data = {};
     }
 
@@ -16,34 +26,34 @@ angular.module('tipCalculator', [])
       $scope.data = {};
     }
 
-  })
-  .controller('charges', function($scope) {
-    $scope.$on('customerCharged', function(event, data) {
-      $scope.data = data;
-    });
-
-    $scope.calculateSubtotal = function(amount, tax) {
+    function updateCustomerCharges() {
+      var data = $scope.data;
+      $scope.subtotal = calculateSubtotal(data.price, data.tax);
+      $scope.tip = calculateTip(data.price, data.tip);
+      $scope.total = $scope.subtotal + $scope.tip;
+    }
+    
+    function calculateSubtotal(amount, tax) {
       if (amount === undefined || tax === undefined) return;
       return amount + (amount * (tax/100));
     }
 
-    $scope.calculateTip = function(amount, tip) {
+    function calculateTip(amount, tip) {
       if (amount === undefined || tip === undefined) return;
       return amount * (tip/100);
     }
 
   })
-  .controller('earnings', function($scope) {
-    $scope.checks = [];
-
-    $scope.$on('customerCharged', function(event, data) {
-      $scope.checks.push(data);
-    });
+  .controller('earningsCtrl', function($rootScope, $scope) {
 
     $scope.getTipTotal = function() {
-      return $scope.checks.reduce(function(prev, curr, i, arr) {
+      return $rootScope.checks.reduce(function(prev, curr, i, arr) {
         return prev + ((curr.tip/ 100) * curr.price);
       }, 0);
+    }
+
+    $scope.reset = function() {
+      $rootScope.checks = [];
     }
 
   })
