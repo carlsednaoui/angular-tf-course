@@ -1,0 +1,21 @@
+{
+  "name": "unit-2-lesson-1-assignment-1",
+  "version": "0.0.0",
+  "homepage": "https://github.com/carlsednaoui/angular-tf-course",
+  "authors": [
+    "carl sednaoui <carlsednaoui@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.2",
+    "angular-route": "~1.3.2"
+  }
+}
