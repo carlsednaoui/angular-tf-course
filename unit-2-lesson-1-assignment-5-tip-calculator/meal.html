@@ -1,0 +1,35 @@
+<h1>Meal</h1>
+
+<div class="calculator">
+    <form name="customer-bill"
+          ng-submit="chargeCustomer()">
+      <h2>Enter the meal details</h2>
+      
+      <div>
+        <label>Base meal price: $</label>
+        <input type="number" ng-model="data.price" required>  
+      </div>
+
+      <div>
+        <label>Tax rate: %</label>
+        <input type="number" ng-model="data.tax" required>
+      </div>
+
+      <div>
+        <label>Tip percentage: %</label>
+        <input type="number" ng-model="data.tip" required>
+      </div>
+
+      <input type="submit" value="submit">
+    </form>
+    <button ng-click="cancel()">cancel</button>
+</div>
+
+<div>
+  <h2>Customer charges</h2>
+  
+  <p>Subtotal: {{ subtotal }}</p>
+  <p>Tip: {{ tip }}</p>
+  <p>Total: {{ total }}
+  </p>
+</div>
