@@ -1,0 +1,7 @@
+<h2>My earnings info</h2>
+
+<p>Tip total: {{ getTipTotal() }}</p>
+<p>Meal count: {{ checks.length }}</p>
+<p>Average tip per meal: {{ getTipTotal() / checks.length }}</p>
+
+<button ng-click="reset()">Reset</button>
