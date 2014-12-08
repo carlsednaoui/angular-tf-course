@@ -4,8 +4,13 @@
   <li>Population: {{ country.population | number:0 }}</li>
   <li>Area:  {{ country.areaInSqKm | number:0 }} square km</li>
   <li>Capital: {{ country.capital }}</li>
-  <li>Population of capital: {{ 'TBD' }}</li>
-  <li>3 neighbors: {{ 'TBD' }}</li>
+  <li>Population of capital: {{ population | number:0 }} humans</li>
+  <li>3 neighbors:
+    <ul>
+      <li ng-repeat="n in neighbours | limitTo:3"
+          ng-click="showCountry(n.countryCode)">{{ n.toponymName }}</li>
+    </ul>
+  </li>
 </ul>
 
 <img ng-src="http://www.geonames.org/flags/x/{{ countryCode | lowercase }}.gif">

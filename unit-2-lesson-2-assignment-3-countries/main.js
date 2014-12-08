@@ -24,25 +24,42 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
       $location.path('/countries/' + countryCode);
     }
   })
-  .controller('CountryCtrl', function($scope, $rootScope, $location, $routeParams) {
+  .controller('CountryCtrl', function($scope, $rootScope, $location, $routeParams, API) {
     $scope.countryCode = $routeParams.countryCode;
     $scope.country;
 
     // find current country
-    function findCurrentCountry() {
+    function updateCountryInfo() {
       $rootScope.countries.forEach(function(country) {
         if (country.countryCode === $scope.countryCode) {
           $scope.country = country;
           return;
         }
       })  
+
+      if ($scope.country) {
+        API.getCityPopulation($scope.country.capital, $scope.countryCode)
+          .then(function(response) {
+            $scope.population = response.data.geonames[0].population;
+          });
+
+        API.getNeighbours($scope.country.geonameId)
+          .then(function(response) {
+            $scope.neighbours = response.data.geonames;
+          });  
+      }
     }
 
-    findCurrentCountry();
+    updateCountryInfo();
 
     // if user enters through a country URL, find country once API has responded
     $rootScope.$watch('countries', function(newValue, oldValue) {
-      findCurrentCountry();
+      updateCountryInfo();
     });
+
+    $scope.showCountry = function(countryCode) {
+      $location.path('/countries/' + countryCode);
+    }
+
 
   });
