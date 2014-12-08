@@ -1,29 +1,15 @@
-<h2>country</h2>
+<h2>{{ country.countryName }}</h2>
 
-<!-- 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Country code</th>
-      <th>Capital</th>
-      <th>Sqr Km</th>
-      <th>Population</th>
-      <th>Continent</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="country in countries"
-        ng-click="/countries/{{country.countryCode}}">
-      <td>{{ country.countryName }}</td>
-      <td>{{ country.countryCode }}</td>
-      <td>{{ country.capital }}</td>
-      <td>{{ country.areaInSqKm | number:0 }}</td>
-      <td>{{ country.population | number:0 }}</td>
-      <td>{{ country.continent }}</td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li>Population: {{ country.population | number:0 }}</li>
+  <li>Area:  {{ country.areaInSqKm | number:0 }} square km</li>
+  <li>Capital: {{ country.capital }}</li>
+  <li>Population of capital: {{ 'TBD' }}</li>
+  <li>3 neighbors: {{ 'TBD' }}</li>
+</ul>
 
-<p>{{ countries | json }}</p>
- -->
+<img ng-src="http://www.geonames.org/flags/x/{{ countryCode | lowercase }}.gif">
+<img ng-src="http://www.geonames.org/img/country/250/{{ countryCode | uppercase }}.png">
+
+<a href="#/">Home</a>
+<a href="#/countries">Browse countries</a>
