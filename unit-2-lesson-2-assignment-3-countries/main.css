@@ -17,3 +17,65 @@
 .animate-view.ng-enter.ng-enter-active { opacity: 1; transform: none; }
 .animate-view.ng-leave { opacity: 1; }
 .animate-view.ng-leave.ng-leave-active { opacity: 0; transform: translate3d(100%, 0, 0); }
+
+
+body {
+    background: url(images/map.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  margin: 60px;
+}
+
+.home {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+a.cta {
+  width: 180px;
+  display: block;
+  margin: 60px auto;
+  padding: 17px;
+  background-color: #2ecc71;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1em;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+}
+
+
+.countries table {
+  margin: 0 auto;
+}
+
+.countries th {
+  padding-bottom: 10px;
+}
+
+.countries td {
+  cursor: pointer;
+  text-align: center;
+}
+
+.country {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.country .flag,
+.country .map {
+  width: 250px;
+  vertical-align: top;
+  margin-top: 30px;
+  padding-right: 30px;
+}
