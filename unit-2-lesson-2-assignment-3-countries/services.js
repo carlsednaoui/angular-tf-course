@@ -1,12 +1,12 @@
 angular.module('countries').factory('API', function($http) {
-
   var baseUrl = 'http://api.geonames.org/';
-  var username = 'username=carlsed';
+  var username = 'carlsed';
 
   function getCountries() {
-    return $http.get( baseUrl
-                      + 'countryInfoJSON?'
-                      + username);
+    return $http.get( baseUrl + 'countryInfoJSON', { 
+      params: { username: username },
+      cache: true
+    });
   }
 
   function getCityPopulation(city, country) {
@@ -15,7 +15,7 @@ angular.module('countries').factory('API', function($http) {
                       + city
                       + '&country='
                       + country
-                      + '&'
+                      + '&username='
                       + username);
   }
 
