@@ -1,20 +1,21 @@
-<h2>{{ country.countryName }}</h2>
+<div class="country">
+  <h2>{{ country.countryName }}</h2>
 
-<ul>
-  <li>Population: {{ country.population | number:0 }}</li>
-  <li>Area:  {{ country.areaInSqKm | number:0 }} square km</li>
-  <li>Capital: {{ country.capital }}</li>
-  <li>Population of capital: {{ population | number:0 }} humans</li>
-  <li>3 neighbors:
-    <ul>
-      <li ng-repeat="n in neighbours | limitTo:3"
-          ng-click="showCountry(n.countryCode)">{{ n.toponymName }}</li>
-    </ul>
-  </li>
-</ul>
+  <ul>
+    <li>Population: {{ country.population | number:0 }}</li>
+    <li>Area:  {{ country.areaInSqKm | number:0 }} square km</li>
+    <li>Capital: {{ country.capital }}</li>
+    <li>Population of capital: {{ population | number:0 }} humans</li>
+    <li>3 neighbors:
+      <ul>
+        <li ng-repeat="n in neighbours | limitTo:3"
+            ng-click="showCountry(n.countryCode)">{{ n.toponymName }}</li>
+      </ul>
+    </li>
+  </ul>
 
-<img ng-src="http://www.geonames.org/flags/x/{{ countryCode | lowercase }}.gif">
-<img ng-src="http://www.geonames.org/img/country/250/{{ countryCode | uppercase }}.png">
+  <img class="flag" ng-src="http://www.geonames.org/flags/x/{{ countryCode | lowercase }}.gif">
+  <img class="map" ng-src="http://www.geonames.org/img/country/250/{{ countryCode | uppercase }}.png">
 
-<a href="#/">Home</a>
-<a href="#/countries">Browse countries</a>
+  <a class="cta" href="#/countries">View all countries</a>
+</div>
