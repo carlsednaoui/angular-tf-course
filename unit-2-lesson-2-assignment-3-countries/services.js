@@ -1,4 +1,6 @@
 angular.module('countries').factory('API', function($http) {
+  
+  // convenience vars
   var baseUrl = 'http://api.geonames.org/';
   var username = 'carlsed';
 
@@ -6,6 +8,8 @@ angular.module('countries').factory('API', function($http) {
     return $http.get( baseUrl + 'countryInfoJSON', { 
       params: { username: username },
       cache: true
+    }).then(function(response) {
+      return response.data.geonames;
     });
   }
 
@@ -23,14 +27,26 @@ angular.module('countries').factory('API', function($http) {
     return $http.get( baseUrl
                       + 'neighboursJSON?geonameId='
                       + geonameId
-                      + '&'
+                      + '&username='
                       + username);
+  }
+
+  function findCountryById(countryId, countries) {
+    var country;
+    countries.forEach(function(c) {
+      if (countryId === c.countryCode) {
+        country = c;
+        return false;
+      }
+    })
+    return country;
   }
 
   return {
     getCountries: getCountries,
     getCityPopulation: getCityPopulation,
-    getNeighbours: getNeighbours
+    getNeighbours: getNeighbours,
+    findCountryById: findCountryById
   };
 });
 

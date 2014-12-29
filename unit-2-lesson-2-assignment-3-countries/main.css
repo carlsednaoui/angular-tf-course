@@ -79,3 +79,7 @@ a.cta {
   margin-top: 30px;
   padding-right: 30px;
 }
+
+.neighbors {
+  cursor: pointer;
+}

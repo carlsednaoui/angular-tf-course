@@ -1,3 +1,3 @@
 ## TODO
 - Add minification
-- Review code, it's a mess
+- How to remove nested .then() in resolve block?

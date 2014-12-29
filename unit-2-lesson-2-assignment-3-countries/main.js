@@ -7,9 +7,7 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
           controller : 'CountriesCtrl',
           resolve: {
             countries: function(API) {
-              return API.getCountries().then(function(response) {
-                return response.data.geonames;
-              });
+              return API.getCountries();
             }
           }
       }).when('/countries/:countryCode', {
@@ -17,26 +15,25 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
           controller : 'CountryCtrl',
           resolve: {
             country: function(API, $route) {
-              return API.getCountries().then(function(response) {
-                return response.data.geonames;
-              }).then(function(countries) {
-                var country;
-
-                countries.forEach(function(_country) {
-                  if (_country.countryCode === $route.current.params.countryCode) {
-                    country = _country;
-                    return;
-                  }
+              return API.getCountries()
+                .then(function(countries) {
+                  var currentCountryId = $route.current.params.countryCode;
+                  return API.findCountryById(currentCountryId, countries);
                 })
-
-                return country;
-              }).then(function(country) {
-                return API.getCityPopulation(country.capital, country.countryCode)
+                .then(function(country) {
+                  return API.getCityPopulation(country.capital, country.countryCode)
                   .then(function(response) {
                     country.population = response.data.geonames[0].population;
                     return country;
                   })
-              });
+                })
+                .then(function(country) {
+                  return API.getNeighbours(country.geonameId)
+                  .then(function(response) {
+                    country.neighbours = response.data.geonames;
+                    return country;
+                  })
+                });
             }
           }
       }).otherwise({
@@ -53,34 +50,7 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
   .controller('CountryCtrl', function($scope, $rootScope, $location, $routeParams, API, country) {
 
     $scope.country = country;
-    // $scope.countryCode = $routeParams.countryCode;
-    // $scope.country;
-
-    // // find current country
-    // function updateCountryInfo() {
-    //   $rootScope.countries
-    //   })  
-
-    //   if ($scope.country) {
-    //     API.getCityPopulation($scope.country.capital, $scope.countryCode)
-    //       .then(function(response) {
-    //         $scope.population = response.data.geonames[0].population;
-    //       });
-
-    //     API.getNeighbours($scope.country.geonameId)
-    //       .then(function(response) {
-    //         $scope.neighbours = response.data.geonames;
-    //       });
-    //   }
-    // }
-    // updateCountryInfo();
-
-    // // if user enters through a country URL, find country once API has responded
-    // $rootScope.$watch('countries', function(newValue, oldValue) {
-    //   updateCountryInfo();
-    // });
-
-    // $scope.showCountry = function(countryCode) {
-    //   $location.path('/countries/' + countryCode);
-    // }
+    $scope.showCountry = function(countryCode) {
+      $location.path('/countries/' + countryCode);
+    }
   });
