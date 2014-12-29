@@ -1,9 +1,9 @@
 angular.module('countries', ['ngRoute', 'ngAnimate'])
-  .config(function($routeProvider) {
+  .config(['$routeProvider', function($routeProvider) {
       $routeProvider.when('/', {
-          templateUrl : './home.html'
+          templateUrl : './templates/home.html'
       }).when('/countries', {
-          templateUrl : './countries.html',
+          templateUrl : './templates/countries.html',
           controller : 'CountriesCtrl',
           resolve: {
             countries: function(API) {
@@ -11,7 +11,7 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
             }
           }
       }).when('/countries/:countryCode', {
-          templateUrl : './country.html',
+          templateUrl : './templates/country.html',
           controller : 'CountryCtrl',
           resolve: {
             country: function(API, $route) {
@@ -39,18 +39,19 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
       }).otherwise({
         redirectTo : '/'
       })
-  })
-  .controller('CountriesCtrl', function($scope, $location, countries) {
-    $scope.countries = countries;
+  }])
+  .controller('CountriesCtrl', ['$scope', '$location', 'countries',
+    function($scope, $location, countries) {
+      $scope.countries = countries;
 
-    $scope.showCountry = function(countryCode) {
-      $location.path('/countries/' + countryCode);
-    }
-  })
-  .controller('CountryCtrl', function($scope, $rootScope, $location, $routeParams, API, country) {
-
-    $scope.country = country;
-    $scope.showCountry = function(countryCode) {
-      $location.path('/countries/' + countryCode);
-    }
-  });
+      $scope.showCountry = function(countryCode) {
+        $location.path('/countries/' + countryCode);
+      }
+  }])
+  .controller('CountryCtrl', ['$scope', '$location', 'country',
+    function($scope, $location, country) {
+      $scope.country = country;
+      $scope.showCountry = function(countryCode) {
+        $location.path('/countries/' + countryCode);
+      }
+  }]);
