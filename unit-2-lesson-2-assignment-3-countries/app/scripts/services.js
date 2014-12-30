@@ -42,11 +42,15 @@ angular.module('countries').factory('API', ['$http', function($http) {
     return country;
   }
 
+  function testSpec() {
+    return "hellow";
+  }
+
   return {
     getCountries: getCountries,
     getCityPopulation: getCityPopulation,
     getNeighbours: getNeighbours,
-    findCountryById: findCountryById
+    findCountryById: findCountryById,
+    testSpec: testSpec
   };
 }]);
-
