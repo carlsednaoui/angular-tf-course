@@ -1,4 +1,4 @@
-angular.module('countries').factory('API', ['$http', function($http) {
+angular.module('countries').factory('API', function($http) {
   
   // convenience vars
   var baseUrl = 'http://api.geonames.org/';
@@ -43,7 +43,7 @@ angular.module('countries').factory('API', ['$http', function($http) {
   }
 
   function testSpec() {
-    return "hellow";
+    return "hello";
   }
 
   return {
@@ -53,4 +53,4 @@ angular.module('countries').factory('API', ['$http', function($http) {
     findCountryById: findCountryById,
     testSpec: testSpec
   };
-}]);
+});

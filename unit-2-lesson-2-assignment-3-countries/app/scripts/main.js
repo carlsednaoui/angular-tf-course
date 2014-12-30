@@ -1,5 +1,5 @@
 angular.module('countries', ['ngRoute', 'ngAnimate'])
-  .config(['$routeProvider', function($routeProvider) {
+  .config(function($routeProvider) {
       $routeProvider.when('/', {
           templateUrl : './templates/home.html'
       }).when('/countries', {
@@ -39,19 +39,17 @@ angular.module('countries', ['ngRoute', 'ngAnimate'])
       }).otherwise({
         redirectTo : '/'
       })
-  }])
-  .controller('CountriesCtrl', ['$scope', '$location', 'countries',
-    function($scope, $location, countries) {
+  })
+  .controller('CountriesCtrl', function($scope, $location, countries) {
       $scope.countries = countries;
 
       $scope.showCountry = function(countryCode) {
         $location.path('/countries/' + countryCode);
       }
-  }])
-  .controller('CountryCtrl', ['$scope', '$location', 'country',
-    function($scope, $location, country) {
+  })
+  .controller('CountryCtrl', function($scope, $location, country) {
       $scope.country = country;
       $scope.showCountry = function(countryCode) {
         $location.path('/countries/' + countryCode);
       }
-  }]);
+  });

@@ -15,20 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-       './lib/angular.js',
-       './lib/angular-mocks.js',
+       './app/scripts/lib/angular.min.js',
+       './app/scripts/lib/angular-route.min.js',
+       './app/scripts/lib/angular-animate.min.js',
+       './node_modules/angular-mocks/angular-mocks.js',
+       './app/scripts/**/*.js',
        './app/**/*Spec.js',
-       './app/**/*.js',
     ],
 
 
     // list of files to exclude
     exclude: [
-      '/scripts/lib/**/*',
-      '/app/scripts/lib/**/*',
-      '/app/scripts/lib/**/*.js',
-      '/app/scripts/lib/*.js',
-      '/app/scripts/lib/*.js'
     ],
 
 
@@ -58,7 +55,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
@@ -68,6 +65,6 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: false
   });
 };
