@@ -1,0 +1,7 @@
+.brand-logo {
+  background-image: url(./banana.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center top;
+  min-height: 290px;
+}
