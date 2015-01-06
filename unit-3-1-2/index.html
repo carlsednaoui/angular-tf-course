@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-  <opt-in>
+  <div ng-controller="editMe">
+    <h1 contenteditable="{{ edit.mode }}">Edit this headline</h1>
+  </div>
+
+  <div ng-controller="sidebar">
+    <editable edit="edit"></editable>
+  </div>
+
+  <!-- <opt-in>
     <div class="brand-logo"></div>
   </opt-in>
 
@@ -22,6 +30,6 @@
       width="10%" 
       ogg="https://ia600707.us.archive.org/26/items/Are_You_Keeping_Up_With_Your_Commodore_1983_Commodore_AU/Are_You_Keeping_Up_With_Your_Commodore_1983_Commodore_AU.ogv" 
       mp4="https://archive.org/download/Are_You_Keeping_Up_With_Your_Commodore_1983_Commodore_AU/Are_You_Keeping_Up_With_Your_Commodore_1983_Commodore_AU.mp4" >
-  </mega-video>
+  </mega-video> -->
 </body>
 </html>
