@@ -30,24 +30,15 @@ angular.module('calendarDemoApp', [])
         date: '='
       },
       link: function(scope, element, attrs) {
-        scope.days = CalendarRange.getMonthlyRange(scope.selectedDate).days;
-
         scope.isCurrentMonth = function(date) {
           return date.getMonth() == scope.date.month;
         }
 
-        scope.$watch(scope.selectedDate, function(date) {
-          
-          if(!date) return;
-          scope.days = CalendarRange.getMonthlyRange(scope.selectedDate);
-        }, true);
+        scope.getDays = function() {
+          return CalendarRange.getMonthlyRange(scope.selectedDate).days;
+        }
 
-        scope.$watch(function(){
-          return scope.selectedDate;
-        }, function(date) {
-          if(!date) return;
-          scope.days = CalendarRange.getMonthlyRange(scope.selectedDate)['days'];
-         }, true);
+        scope.days = scope.getDays();
       }
     }
   })

@@ -14,6 +14,15 @@ app.factory('editMode', function() {
   return {
     mode: false
   };
+
+  // return {
+  //   paragraph: {
+  //     mode: false
+  //   },
+  //   header: {
+  //     mode: false
+  //   },
+  // };
 })
 
 app.controller('editMe', function($scope, editMode) {
