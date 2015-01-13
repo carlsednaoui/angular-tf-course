@@ -8,7 +8,7 @@ describe('megaVideo', function() {
         oggSrc;
 
     beforeEach(module("myApp"));
-    beforeEach(module('video.html'));
+    beforeEach(module('template'));
     beforeEach(inject(function($rootScope, $compile) {
 
         oggSrc = 'https://ia600500.us.archive.org/1/items/Duck_and_Cover/1951_duck_and_cover.ogv';
