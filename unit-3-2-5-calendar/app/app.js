@@ -42,7 +42,9 @@ angular.module('calendarDemoApp', [])
           scope.days = CalendarRange.getMonthlyRange(scope.selectedDate);
         }, true);
 
-        scope.$watch(function(){return scope.selectedDate;}, function(date) {
+        scope.$watch(function(){
+          return scope.selectedDate;
+        }, function(date) {
           if(!date) return;
           scope.days = CalendarRange.getMonthlyRange(scope.selectedDate)['days'];
          }, true);
