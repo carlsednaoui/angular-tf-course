@@ -1,0 +1,5 @@
+<div class="calendar-container">
+  <div ng-repeat="day in days" ng-class="{diffMonth: !isCurrentMonth(day.date)}">
+    {{ day.date.getDate() }}
+  </div>
+</div>
